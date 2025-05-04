@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "317373417952",
+    "project_id": "topai-assignment",
+    "storage_bucket": "topai-assignment.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317373417952:android:9fc24d5803ed11ee2f8385",
+        "android_client_info": {
+          "package_name": "com.topai.topai24"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317373417952-8vpiaeqhl99fi1n0aqrbp5dajqmuojrh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.topai.topai24",
+            "certificate_hash": "090106c45ed7210f73253dd7991b0184b648024f"
+          }
+        },
+        {
+          "client_id": "317373417952-4uhp786utbnjn7mrnlnukkf46dnb58sj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxSLwLDvT6SRsvLmDIGk7wiOYHtOuu8mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317373417952-4uhp786utbnjn7mrnlnukkf46dnb58sj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
