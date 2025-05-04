@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,9 +30,7 @@ class LoginView extends GetView<LoginController> {
               style: TextStyle(fontSize: 16, color: Color(0xFF707480)),
             ),
             SizedBox(height: 24),
-            Image.asset(
-              'assets/images/ic_art.jpg',
-            ),
+            Image.asset('assets/images/ic_art.jpg'),
             SizedBox(height: 24),
             ElevatedButton.icon(
               icon: Image.asset(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../login/controllers/login_controller.dart';
 
 class LogoutView extends GetView<LoginController> {
@@ -20,22 +21,16 @@ class LogoutView extends GetView<LoginController> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/ic_logout.jpg',
-            ),
+            Image.asset('assets/images/ic_logout.jpg'),
             SizedBox(height: 24),
 
             ElevatedButton.icon(
               label: Text('Logout'),
               onPressed: controller.logout,
-              // Call controller method
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF4F46E5),
-                // Button color
                 foregroundColor: Colors.white,
-                // Text color
                 minimumSize: Size(double.infinity, 50),
-                // Full width
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

@@ -1,7 +1,6 @@
 part of 'app_pages.dart';
 
 abstract class Routes {
-
   static const AUTH = _Paths.AUTH;
   static const LOGIN = _Paths.LOGIN;
   static const PROFILE = _Paths.PROFILE;

@@ -5,19 +5,18 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class AppColors {
-  // Define your app's colors
-  static const Color primaryPurple = Color(0xFF4F46E5); // Example purple
+  static const Color primaryPurple = Color(0xFF4F46E5);
   static const Color textGrey = Colors.grey;
   static const Color lightGreyBorder = Color(0xFFE0E0E0);
-  static const Color inputBackground = Colors.white; // Or very light grey
-  static const Color labelColor = Color(0xFF555555); // Darker grey for labels
+  static const Color inputBackground = Colors.white;
+  static const Color labelColor = Color(0xFF555555);
 }
 
 class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Or a light background color
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           'Personal Info',
@@ -39,12 +38,10 @@ class HomeView extends GetView<HomeController> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Form(
-          // Wrap content in a Form widget
-          key: controller.formKey, // Assign the key from the controller
+          key: controller.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // --- Address Field ---
               _buildSectionLabel('Address'),
               TextFormField(
                 controller: controller.addressController,
@@ -53,29 +50,21 @@ class HomeView extends GetView<HomeController> {
                 textInputAction: TextInputAction.next,
               ),
               SizedBox(height: 20),
-
-              // --- Phone Number Field ---
               _buildSectionLabel('Phone Number'),
               TextFormField(
                 controller: controller.phoneController,
                 decoration: _inputDecoration('Enter 10-digit phone number'),
                 keyboardType: TextInputType.phone,
                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                // Only allow digits
                 maxLength: 10,
-                // Enforce length
                 validator: controller.validatePhone,
                 textInputAction: TextInputAction.next,
               ),
               SizedBox(height: 20),
-
-              // --- Age Dropdown ---
               _buildSectionLabel('Age'),
               Obx(
-                // Wrap Dropdown with Obx to react to selection changes
                 () => DropdownButtonFormField<int>(
                   value: controller.selectedAge.value,
-                  // Bind value to controller observable
                   items:
                       controller.ageOptions.map((int age) {
                         return DropdownMenuItem<int>(
@@ -84,41 +73,34 @@ class HomeView extends GetView<HomeController> {
                         );
                       }).toList(),
                   onChanged: (int? newValue) {
-                    controller.selectedAge.value =
-                        newValue; // Update controller observable
+                    controller.selectedAge.value = newValue;
                   },
-                  decoration: _inputDecoration('').copyWith(
-                    // Remove hint text from default decoration
-                    hintText: 'Select age', // Use hint property here
-                  ),
+                  decoration: _inputDecoration(
+                    '',
+                  ).copyWith(hintText: 'Select age'),
                   validator: controller.validateAge,
-                  // Use controller's validator
+
                   hint: Text('Select age'),
-                  // Show hint when no value is selected
-                  isExpanded: true, // Make dropdown take available width
+
+                  isExpanded: true,
                 ),
               ),
               SizedBox(height: 20),
-
-              // --- Additional Information Field ---
               _buildSectionLabel('Additional Information'),
               TextFormField(
                 controller: controller.additionalInfoController,
                 decoration: _inputDecoration(
                   'Enter any additional information',
                 ),
-                maxLines: 4, // Multi-line input
+                maxLines: 4,
                 textInputAction: TextInputAction.done,
-                // No validator needed unless it's required
               ),
               SizedBox(height: 30),
-
               Obx(
                 () => ElevatedButton.icon(
                   icon:
                       controller.isLoading.value
                           ? SizedBox(
-                            // Show spinner when loading
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(
@@ -128,13 +110,12 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                           )
-                          : Icon(Icons.save_alt, size: 20), // Your save icon
+                          : Icon(Icons.save_alt, size: 20),
                   label: Text('Save Information'),
                   onPressed:
                       controller.isLoading.value
                           ? null
-                          : controller
-                              .saveInformation, // Disable button when loading
+                          : controller.saveInformation,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primaryPurple,
                     foregroundColor: Colors.white,
@@ -156,7 +137,6 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Helper for section labels
   Widget _buildSectionLabel(String label) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
@@ -171,7 +151,6 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  // Helper for input decoration
   InputDecoration _inputDecoration(String hintText) {
     return InputDecoration(
       hintText: hintText,
@@ -189,12 +168,8 @@ class HomeView extends GetView<HomeController> {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(
-          color: AppColors.primaryPurple,
-          width: 1.5,
-        ), // Highlight border on focus
+        borderSide: BorderSide(color: AppColors.primaryPurple, width: 1.5),
       ),
-      // Remove default counter for phone number length
       counterText: "",
     );
   }

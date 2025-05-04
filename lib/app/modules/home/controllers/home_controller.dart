@@ -7,25 +7,17 @@ import '../../../routes/app_pages.dart';
 import '../../login/controllers/login_controller.dart';
 
 class HomeController extends GetxController {
-  // --- Form Key ---
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  // --- Text Editing Controllers ---
   late TextEditingController addressController;
   late TextEditingController phoneController;
   late TextEditingController additionalInfoController;
 
-  // --- Dropdown State ---
-  final List<int> ageOptions = List<int>.generate(
-    83,
-    (i) => i + 18,
-  ); // Ages 18 to 100
-  final RxnInt selectedAge = RxnInt(null); // Observable for selected age
+  final List<int> ageOptions = List<int>.generate(83, (i) => i + 18);
+  final RxnInt selectedAge = RxnInt(null);
 
-  // --- Loading State ---
   final RxBool isLoading = false.obs;
 
-  // --- Firebase Instance ---
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -62,7 +54,6 @@ class HomeController extends GetxController {
     if (value == null || value.isEmpty) {
       return 'Please enter your phone number';
     }
-    // Basic 10-digit check (adjust regex as needed for specific formats)
     if (!RegExp(r'^\d{10}$').hasMatch(value)) {
       return 'Please enter a valid 10-digit phone number';
     }
@@ -98,7 +89,7 @@ class HomeController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
       );
-      Get.offAllNamed(Routes.LOGIN); // Redirect to login
+      Get.offAllNamed(Routes.LOGIN);
       return;
     }
 
@@ -148,7 +139,7 @@ class HomeController extends GetxController {
         final data = docSnap.data()!;
         addressController.text = data['address'] ?? '';
         phoneController.text = data['phoneNumber'] ?? '';
-        selectedAge.value = data['age']; // Might be null if not previously set
+        selectedAge.value = data['age'];
         additionalInfoController.text = data['additionalInfo'] ?? '';
       }
     }
@@ -180,7 +171,9 @@ class HomeController extends GetxController {
 
     final String uid = currentUser.uid;
 
-    final DocumentReference userDocRef = _firestore.collection('users').doc(uid);
+    final DocumentReference userDocRef = _firestore
+        .collection('users')
+        .doc(uid);
 
     try {
       await userDocRef.delete();
@@ -195,13 +188,15 @@ class HomeController extends GetxController {
 
       try {
         final LoginController loginController = Get.find<LoginController>();
-        await loginController.logout(); // Await logout completion
+        await loginController.logout();
       } catch (e) {
-        errorMessage.value = "Data deleted, but failed to trigger automatic logout. Please logout manually.";
+        errorMessage.value =
+            "Data deleted, but failed to trigger automatic logout. Please logout manually.";
         _showErrorSnackbar(errorMessage.value);
       }
     } on FirebaseException catch (e) {
-      errorMessage.value = "Firestore Error: ${e.message ?? 'Unknown Firestore error'} (Code: ${e.code})";
+      errorMessage.value =
+          "Firestore Error: ${e.message ?? 'Unknown Firestore error'} (Code: ${e.code})";
       _showErrorSnackbar(errorMessage.value);
     } catch (e) {
       errorMessage.value = "An unexpected error occurred: $e";
@@ -211,7 +206,6 @@ class HomeController extends GetxController {
     }
   }
 
-  // Helper to show snackbar messages
   void _showErrorSnackbar(String message) {
     if (Get.isSnackbarOpen) {
       Get.closeCurrentSnackbar();
@@ -222,7 +216,7 @@ class HomeController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.red,
       colorText: Colors.white,
-      duration: Duration(seconds: 4), // Show longer for errors
+      duration: Duration(seconds: 4),
     );
   }
 }

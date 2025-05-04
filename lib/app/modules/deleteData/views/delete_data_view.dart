@@ -33,29 +33,24 @@ class DeleteDataView extends GetView<HomeController> {
                     actions: [
                       TextButton(
                         child: Text('Cancel'),
-                        onPressed: () => Get.back(), // Close dialog
+                        onPressed: () => Get.back(),
                       ),
                       TextButton(
                         child: Text('Delete'),
-                        onPressed: (){
+                        onPressed: () {
                           Get.back();
                           controller.deleteUserData();
                         },
                       ),
                     ],
                   ),
-                  barrierDismissible:
-                      false, // Prevent dismissing by tapping outside
+                  barrierDismissible: false,
                 );
               },
-              // Call controller method
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF4F46E5),
-                // Button color
                 foregroundColor: Colors.white,
-                // Text color
                 minimumSize: Size(double.infinity, 50),
-                // Full width
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

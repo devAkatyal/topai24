@@ -15,16 +15,13 @@ class _AuthWrapperState extends State<AuthWrapper> {
   @override
   void initState() {
     super.initState();
-    // Use ever() to listen reactively and navigate
     ever(loginController.firebaseUser, _handleAuthChanged);
-    // Initial check in case the stream has already emitted
     _handleAuthChanged(loginController.firebaseUser.value);
   }
 
   void _handleAuthChanged(User? user) {
-    // Use addPostFrameCallback to ensure navigation happens after build
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return; // Check if the widget is still in the tree
+      if (!mounted) return;
 
       final currentRoute = Get.currentRoute;
       if (user == null) {
@@ -39,13 +36,8 @@ class _AuthWrapperState extends State<AuthWrapper> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    return Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 }

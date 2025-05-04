@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../routes/app_pages.dart';
 
 class ProfileController extends GetxController {
-
   final RxnString name = RxnString(null);
   final RxnString email = RxnString(null);
   final RxnString userId = RxnString(null);
@@ -28,7 +28,6 @@ class ProfileController extends GetxController {
         email.value = currentUser.email;
         userId.value = currentUser.uid;
         photoUrl.value = currentUser.photoURL;
-
       } else {
         Get.offAllNamed(Routes.LOGIN);
       }
@@ -48,7 +47,4 @@ class ProfileController extends GetxController {
   void continueToHome() {
     Get.toNamed(Routes.HOME);
   }
-
-
-
 }
