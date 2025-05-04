@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:topai24/app/modules/deleteData/views/delete_data_view.dart';
-import 'package:topai24/app/modules/logout/views/logout_view.dart';
-import 'package:topai24/app/modules/profile/views/profile_view.dart';
+import '../modules/deleteData/views/delete_data_view.dart';
+import '../modules/logout/views/logout_view.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/auth/auth_wrapper.dart';
 import '../modules/deleteData/bindings/delete_data_binding.dart';
 import '../modules/home/bindings/home_binding.dart';
